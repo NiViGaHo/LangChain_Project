@@ -1,0 +1,23 @@
+# core
+langchain>=0.3,<0.4
+langgraph>=0.2.20,<0.3
+langchain-openai
+langchain-ollama
+langchain-huggingface
+langchain-community
+langchain-text-splitters
+faiss-cpu
+beautifulsoup4
+python-dotenv
+
+# server
+fastapi>=0.110
+uvicorn[standard]
+
+# agents & eval
+langchain-experimental
+pandas
+scikit-learn
+langsmith
+openevals
+openai
