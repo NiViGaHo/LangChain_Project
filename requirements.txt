@@ -9,6 +9,9 @@ langchain-text-splitters
 faiss-cpu
 beautifulsoup4
 python-dotenv
+sentence-transformers
+transformers
+torch
 
 # server
 fastapi>=0.110

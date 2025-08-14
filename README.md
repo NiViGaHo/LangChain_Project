@@ -26,18 +26,44 @@ python -m src.chapter7.agent_langgraph_pandas_python
 uvicorn src.chapter9.server_fastapi:app --reload
 ```
 
-## Why these versions
+## Using the new patterns
 
-* LangChain 0.3 split partner packages and favors LCEL/Runnables; agents are steered toward LangGraph.
-* Chapter coverage: LCEL appears around **Side 39–44** (Index: 42–44). LangGraph starts **Side 61**. RAG core concepts around **Side 92–110+**. Use our page mapping guide.
+- RAG pattern example:
+```bash
+python -m examples.document_qa.run_rag_pattern
+```
+
+- In code:
+```python
+from src.patterns import RAGPipeline
+chain = RAGPipeline.from_url("https://python.langchain.com/docs/introduction/").build()
+print(chain.invoke("What is LCEL?"))
+```
+
+## Test the API
+
+PowerShell:
+```powershell
+# If your path contains spaces, prefer the helper scripts below
+./scripts/start_api.ps1 -Port 8010
+./scripts/call_chat.ps1 -Port 8010 -Message 'What is LCEL?'
+```
 
 ## Structure
 
-* `src/chapter2`: LCEL basics + running local models (Ollama, HF).
-* `src/chapter3`: LangGraph stateful workflow with conditional edges.
-* `src/chapter4`: Minimal RAG pipeline (loader → splitter → FAISS → retriever → LCEL).
-* `src/chapter7`: LangGraph ReAct agent with safe Pandas tools (+ optional Python REPL).
-* `src/chapter9`: Async-safe FastAPI wrapper.
+- `src/chapter2`: LCEL basics + running local models (Ollama, HF).
+- `src/chapter3`: LangGraph stateful workflow with conditional edges.
+- `src/chapter4`: Minimal RAG pipeline (loader → splitter → FAISS → retriever → LCEL) and `patterns.rag_pattern`.
+- `src/chapter7`: LangGraph ReAct agent; reusable pattern in `patterns.agent_pattern`.
+- `src/chapter9`: Async-safe FastAPI wrapper using the RAG pattern.
+- `src/patterns`: Reusable RAG/Agent/Workflow builders.
+- `docs`: Architecture and best practices.
+
+## Windows notes (paths with spaces)
+
+- Use `-LiteralPath` in `Set-Location`, or prefer the helper scripts:
+  - `scripts/start_api.ps1` runs Uvicorn using the venv python path safely.
+  - `scripts/call_chat.ps1` posts to the API with proper quoting.
 
 ## Page mapping (broken Index)
 
